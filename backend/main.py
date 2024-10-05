@@ -1,7 +1,7 @@
 # /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__author__ = 'asakura hiroto'
+__author__ = 'Asakura Hiroto'
 __version__ = '1.0.0'
 __date__ = '2024/09/30 (Created: 2024/09/30)'
 
@@ -11,7 +11,7 @@ $ uvicorn main:app --reload
 でサーバーを起動
 
 APIのエンドポイント
-curl -X POST "http://127.0.0.1:8000/prompts/" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"company_name\":\"asakura\",\"logo_image\":\"asakura.jpg\"}"
+curl -X POST "http://127.0.0.1:8000/prompts/" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{"\"user_name\":\"asakura\",\"like_food\":\"sushi\",\"image\":\"sushi.jpg\"}"
 """
 
 from fastapi import Depends, FastAPI, HTTPException
@@ -25,8 +25,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Pydanticを用いたAPIに渡されるデータの定義 ValidationやDocumentationの機能が追加される
 class PromptIn(BaseModel):
-    company_name: str
-    logo_image: str
+    user_name: str
+    like_food: str
+    image: str
 
 # 単一のPromptを取得するためのユーティリティ
 def get_prompt(db_session: Session, prompt_id: int):
@@ -66,8 +67,9 @@ async def update_prompt(prompt_id: int, prompt_in: PromptIn, db: Session = Depen
         raise HTTPException(status_code=404, detail="Prompt not found")
 
     prompt = get_prompt(db, prompt_id)
-    prompt.company_name = prompt_in.company_name
-    prompt.logo_image = prompt_in.logo_image
+    prompt.user_name = prompt_in.user_name
+    prompt.like_food = prompt_in.like_food
+    prompt.image = prompt_in.image
     db.commit()
     db.refresh(prompt)
     return prompt
