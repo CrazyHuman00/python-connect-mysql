@@ -8,7 +8,8 @@ __date__ = '2024/09/30 (Created: 2024/09/30)'
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///../database/test.db'
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../database/prompt.db'
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URI, connect_args={'check_same_thread': False}, echo=True
@@ -23,17 +24,12 @@ class Prompt(Base):
     Args:
         Base (declarative_base): テーブルのベースクラス
     """
-
+    # テーブル名
     __tablename__ = 'prompts'
-    # お客様情報
-    user_id = Column('user_id', Integer, primary_key = True)
-
     # ユーザ名
-    user_name = Column('company_name', String(100))
-
+    user_name = Column('user_name', String(100), primary_key = True)
     # 好きな食べ物
     like_food = Column('like_food', String(500))
-
     # 画像
     image = Column('image', String(500))
 
