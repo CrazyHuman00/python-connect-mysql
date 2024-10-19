@@ -1,11 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FastAPIを使ったWebサイト</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #914;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #914;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #914;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #b35;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: solid 2px #b35;
+        }
+
+        table th,
+        table td {
+            border: dashed 1px #b35;
+        }
+    </style>
 </head>
+
 <body>
-    <h3>登録者</h3>
+    <h3>登録者一覧</h3>
+    <div>
+        <table border="1">
+            <tr>
+                <th>登録者</th>
+                <th>好きな食べ物</th>
+            </tr>
+            <tr>
+                {% for user_info in users_info %}
+                <td><a href="/user/{{ user_info[0] }}">{{ user_info[0] }}</a></td>
+                <td>{{ user_info[1] }}</td>
+            </tr>
+            {% endfor %}
+            {% if not users_info %}
+            まだ何も登録されていません。
+            {% endif %}
+        </table>
+    </div>
+
+    <h3>新しいユーザを登録する</h3>
+    <div>
+        {% if error %}
+        <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+        <form action="/register" method="post">
+            <div>名前 <input type="text" name="user_name" /></div>
+            <div>好きな食べ物 <input type="text" name="like_food" /></div>
+            <div><input type="submit" value="登録" /></div>
+        </form>
+    </div>
 </body>
+
 </html>
