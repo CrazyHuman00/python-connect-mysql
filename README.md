@@ -1,6 +1,6 @@
 # python-connect-mysql
 ### 概要
-Python(FastAPI)とsqlite3を使ったデータベース操作ができるwebサイトです。http://localhost:8000のローカルホスト上で動くだけなので、パプリックには公開してません。簡単に扱えるので、ぜひ遊んでみてください。
+Python(FastAPI)とsqlite3を使ったデータベース操作ができるwebサイトです。http://localhost:8000 のローカルホスト上で動くだけなので、パプリックには公開してません。簡単に扱えるので、ぜひ遊んでみてください。
 
 ### 環境構築
 #### Pythonの環境構築
