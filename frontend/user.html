@@ -61,13 +61,13 @@
 
 <body>
     <div class="container">
-        <form action="/renew/{{ user_name }}" method="post">
+        <form action="/update_data/{{ user_name }}" method="post">
             <div>名前: <input type="text" name="user_name" value="{{ user_name }}"></div>
             <div>好きな食べ物: <input type="text" name="like_food" value="{{ like_food }}"></div>
             <input type="submit" value="更新">
         </form>
         <br>
-        <form action="/delete" method="post">
+        <form action="/delete_data" method="post">
             <input type="hidden" name="user_name" value="{{ user_name }}">
             <input type="submit" value="削除">
         </form>

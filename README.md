@@ -10,11 +10,11 @@ $ pyenv -v
 pyenv 2.4.1
 
 $ python -V
-Python 3.11.6
+Python 3.12.7
 ```
 上記のようにするにはpyenvでPythonのversion3.11.6をインストールしてください。
 ```bash
-$ pyenv install 3.11.6
+$ pyenv install 3.12.7
 ```
 
 #### その他の環境構築
@@ -25,20 +25,16 @@ $ pip install -r requirements.txt
 
 ### 使い方
 Makefileを用意しているので下記のコマンドを入力してもらえば、データベースが作成され、webサイトが開き動作します。
+
 ```bash
-$ make run
+$ make test
 ```
+
 作成したデータベースをチャラにしたい場合は下記のコマンドを入力してください。
+
 ```bash
 $ make clean
 ```
-また、データベースだけ作成したい場合は下記のコマンドを入力してください。
-```bash
-$ make create
-```
-
-### 注意点
-何度もwebサイトをを立ち上げるとポートが渋滞するのでこまめにキルしてください。また、エラーなどがあればissueでコメントしてください。
 
 ### 参考
 - [FastAPIとsqlite3による簡単なウェブサイトを実装する](https://qiita.com/phyblas/items/c3ff92b6dd353f887f1d)

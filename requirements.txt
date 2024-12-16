@@ -1,7 +1,6 @@
 fastapi
 uvicorn
 jinja2
-multipart
-SQLAlchemy
+python-multipart
 pymysql
 mysql-connector-python
